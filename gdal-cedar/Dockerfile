@@ -16,6 +16,7 @@ RUN \
 
 ADD ./gdal.tar.gz /tmp
 RUN \
+  sudo apt-get install libxerces-c-dev libxerces-c3.1 -y && \
   cd /tmp/gdal-* && \
   ./configure --prefix=/app/vendor/gdal \
               --with-static-proj4=/app/vendor/proj \
@@ -24,6 +25,9 @@ RUN \
               --with-grib=no \
               --with-vfk=no \
               --with-hide-internal-symbols && \
+              --with-xerces && \
   make install && \
   cd /app/vendor/gdal && \
+  cp /usr/lib/libxerces* ./lib && \
+  cp /usr/lib/libicu* ./lib && \
   tar zcf /tmp/gdal-cedar.tar.gz .
