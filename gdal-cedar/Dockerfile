@@ -24,7 +24,7 @@ RUN \
               --with-jasper=no \
               --with-grib=no \
               --with-vfk=no \
-              --with-hide-internal-symbols && \
+              --with-hide-internal-symbols \
               --with-xerces && \
   make install && \
   cd /app/vendor/gdal && \
