@@ -31,3 +31,13 @@ RUN \
   cp /usr/lib/libxerces* ./lib && \
   cp /usr/lib/libicu* ./lib && \
   tar zcf /tmp/gdal-cedar.tar.gz .
+
+RUN \
+  curl -O http://download.osgeo.org/geos/geos-3.4.2.tar.bz2 && \
+  tar -xjvf geos-3.4.2.tar.bz2 && \
+  cd geos-3.4.2 && \
+  ./configure --prefix=/app/vendor/geos && \
+  make && \
+  make install && \
+  cd /app/vendor/geos && \
+  tar zcf /tmp/geos-cedar.tar.gz .
